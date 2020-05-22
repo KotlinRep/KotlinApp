@@ -26,9 +26,11 @@ class MainActivity : AppCompatActivity() {
         val checkLogged = "logged"
         val checkEmail = "currentEmail"
         public  fun saveLogOut(){
-            val save = sPref.edit()
-            save.putBoolean(checkLogged,false)
-            save.apply()
+            if(sPref!=null) {
+                val save = sPref.edit()
+                save.putBoolean(checkLogged, false)
+                save.apply()
+            }
         }
     }
 
@@ -42,21 +44,21 @@ class MainActivity : AppCompatActivity() {
     private fun startInfoActivity(user:User?){
         if(user!=null){
         val intentInfo = Intent(this, InfoActivity::class.java)
-        intentInfo.putExtra("firstName",user.firstName)
-        intentInfo.putExtra("lastName",user.lastName)
-        intentInfo.putExtra("email",user.email)
-        intentInfo.putExtra("imageId",user.imagePath)
+        intentInfo.putExtra("firstName",user.getFirstName())
+        intentInfo.putExtra("lastName",user.getLastName())
+        intentInfo.putExtra("email",user.getEmail())
+        intentInfo.putExtra("imageId",user.getIdOfImage())
         startActivity(intentInfo)
         }
     }
-    
+
     private fun checkCorrect():Boolean{
         var email = emailText.text.toString()
         var pass = passwordText.text.toString()
         val regEmail = Regex("[A-Za-z\\-_.0-9]{2,20}@[A-Za-z]{2,10}\\.[a-z]{2,5}")
         if(regEmail.matches(email)&& pass.length>=6 && Regex("""\d+""").containsMatchIn(pass) &&
             Regex("[A-Z]").containsMatchIn(pass) && Regex("[a-z]").containsMatchIn(pass) ){
-            if (data.getUsers().containsKey(email) && data.getUsers().get(email)?.password.equals(pass)){
+            if (data.getUsers().containsKey(email) && data.getUsers().get(email)?.getPassword().equals(pass)){
                 return true
             }
             else{

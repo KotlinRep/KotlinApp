@@ -8,9 +8,9 @@ class UserData {
         val user2 = User("Nikita@gmail.com","Nikita","Ivanov","Nik482",-1)
         val user3 = User("codeforces@code.com","Gena","Korotkevich","Tourist21",R.drawable.gena)
         var table = HashMap<String,User>()
-        table.put(user1.email,user1)
-        table.put(user2.email,user2)
-        table.put(user3.email,user3)
+        table.put(user1.getEmail(),user1)
+        table.put(user2.getEmail(),user2)
+        table.put(user3.getEmail(),user3)
         return table
     }
 
