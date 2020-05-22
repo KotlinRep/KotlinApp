@@ -49,20 +49,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intentInfo)
         }
     }
-
-    fun toastUser(view: View){
-        var email = emailText.text.toString()
-        var pass = passwordText.toString()
-        if(email != "" && pass != ""){
-            val intentInfo = Intent(this, InfoActivity::class.java)
-            startActivity(intentInfo)
-        }
-        else {
-            val toastUser = Toast.makeText(this, "Incorrect email", Toast.LENGTH_SHORT)
-            toastUser.show()
-        }
-    }
-
+    
     private fun checkCorrect():Boolean{
         var email = emailText.text.toString()
         var pass = passwordText.text.toString()
